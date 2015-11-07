@@ -41,7 +41,7 @@ public:
     virtual bool onInit(){
         fileStream.open("Test.txt");
         if(!fileStream.is_open()){return false;}
-        fileStream << "There should be 5 messages after this.";
+        fileStream << "There should be 4 messages after this." << std::endl;
         return true;
     }
     virtual void onProcess(Type data){fileStream << data << std::endl;}
