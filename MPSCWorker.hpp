@@ -45,7 +45,7 @@ THE SOFTWARE.
     do { \
         if (!(condition)) { \
             std::cerr << "Assertion `" #condition "` failed in " << __FILE__ \
-                      << " : " << __LINE__ << ": " << message << std::endl; \
+                      << ":" << __LINE__ << ": " << message << std::endl; \
             std::exit(EXIT_FAILURE); \
         } \
     } while (false)
@@ -53,6 +53,7 @@ THE SOFTWARE.
 #else
 #define ASSERT(condition, message) do { } while (false)
 #endif
+
 
 //----------------------------------------------------------
 //####################### Namespaces #######################
@@ -123,7 +124,7 @@ public:
         //NOTE:     see https://github.com/cameron314/concurrentqueue/issues/30
         //NOTE:     (Currently unresolved.)
         //for(int i = 0; i <= NumOfSinks; i++){
-        //    if(sinks[i].get() != nullptr){
+        //    if(sinks[i]){
         //        sinks[i].get()->onExit();
         //    }
         //}
