@@ -103,6 +103,37 @@ private:
 };
 
 
+template<class Type>
+class Singleton{
+
+public:
+
+    //Functions
+    Singleton()                            = delete;
+    ~Singleton()                           = delete;
+    Singleton(Singleton const&)            = delete;
+    Singleton& operator=(Singleton const&) = delete;
+
+    static Type getInstance(){
+        if(instance.get() == nullptr){
+            instance = std::unique_ptr<Type>(new Type());
+        }
+        return instance.get();
+    }
+
+    static void destroy(){
+        instance.reset();
+    }
+
+private:
+
+    //Variables
+    static std::unique_ptr<Type> instance;
+
+};
+template<class Type> std::unique_ptr<Type> Singleton<Type>::instance = nullptr;
+
+
 //----------------------------------------------------------
 //####################### Main Class #######################
 //----------------------------------------------------------
@@ -222,5 +253,8 @@ private:
 
 
 };
+
+template <class Type, const unsigned int NumOfSinks>
+using MPSCWorkerSingleton = Singleton<MPSCWorker<Type, NumOfSinks>>;
 
 #endif //MPSCWORKER_MPSCWORKER_HPP
