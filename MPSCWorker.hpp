@@ -114,7 +114,7 @@ public:
     Singleton(Singleton const&)            = delete;
     Singleton& operator=(Singleton const&) = delete;
 
-    static Type getInstance(){
+    static Type* getInstance(){
         if(instance.get() == nullptr){
             instance = std::unique_ptr<Type>(new Type());
         }
